@@ -94,12 +94,15 @@
         <label for="todo-2">Dust the vases</label>
       </li>
     </ul>
+
     <div class="footer">
       Todo: <span id="todo-count">1</span> •
       Done: <span id="completed-count">0</span> •
       Total: <span id="total-count">1</span>
-    </div>
-  </div>
+
+      <a href="#" id="clean-up">Clean up</a>
+    </div><!-- .footer -->
+  </div><!-- .container -->
 
   <script>
     $("#total-count").html($(".todo").length);
@@ -167,8 +170,15 @@
 
     }
 
+    function cleanUpDoneTodos(event) {
+      event.preventDefault();
+      $.when($(".completed").remove());
+        .then(updateCounters);
+    }
+
     $("input[type=checkbox]").bind('change', toggleDone);
     $("form").bind('submit', submitTodo);
+    $("#clean-up").bind('click', cleanUpDoneTodos);
 
   </script>
 </body>
